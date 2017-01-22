@@ -67,6 +67,7 @@
 
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="power-plants.js"></script>
+    <script src="Rest_Areas.geojson"></script>
     <script>
         var map = L.map('map', {
             center: [36, -94],
@@ -81,6 +82,15 @@
 
         tiles.addTo(map);
 
+        var servicesLeaflet = L.geoJson(services, {
+            pointToLayer : function(feature, latlng) {
+                console.log();
+                return L.circle(latlng, 20000);
+            }
+        }).addTo(map);
+        
+        
+        
         var radiusCircle = L.circle([0, 0], 500000, {
             fillColor: "white",
             fillOpacity: .1,
